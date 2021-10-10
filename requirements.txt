@@ -1,0 +1,15 @@
+# Django
+Django==3.2.8
+dj-database-url==0.5.0
+
+# Database
+psycopg2-binary==2.9.1
+
+# API
+djangorestframework==3.12.4
+
+# Assets
+whitenoise==5.3.0
+
+# Production
+gunicorn==20.1.0
