@@ -24,7 +24,6 @@ class BaseModel(models.Model):
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     birthdate = models.DateField(null=True, blank=True)
-    bio = models.TextField()
 
     def __str__(self):
         return self.user.username
