@@ -4,6 +4,7 @@ from rest_framework import authentication
 from rest_framework.permissions import IsAuthenticated
 
 from django.contrib.auth.models import User
+from django.shortcuts import get_object_or_404
 
 from .serializers import UserSerializer, ProfileSerializer
 
@@ -16,3 +17,18 @@ class ProfileAPI(APIView):
         return Response(
             {**userData, **profileData}
         )
+
+
+class ProfileAPI(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, id, format=None):
+        user = get_object_or_404(User, pk=id)
+        userData = UserSerializer(user).data
+        profileData = ProfileSerializer(user.profile).data
+        response = {**userData, **profileData}
+        response['photos'] = '0'
+        response['likes'] = '0'
+        response['followers'] = '0'
+        response['following'] = '0'
+        return Response(response)
