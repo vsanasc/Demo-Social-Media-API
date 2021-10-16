@@ -8,7 +8,7 @@ from django.shortcuts import get_object_or_404
 
 from .serializers import UserSerializer, ProfileSerializer
 
-class ProfileAPI(APIView):
+class MyProfileAPI(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request, format=None):
