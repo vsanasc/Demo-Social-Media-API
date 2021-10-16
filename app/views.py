@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 
 from .serializers import UserSerializer, ProfileSerializer
 
-class MyProfileAPI(APIView):
+class ProfileAPI(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request, format=None):
