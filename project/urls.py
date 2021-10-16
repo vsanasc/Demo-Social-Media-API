@@ -21,12 +21,8 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
 
-from app.views import (
-    MyProfileAPI,
-    ProfileAPI,
-    SignupAPI
-)
-
+from api.profile import MyProfileAPI, ProfileAPI
+from api.signup import SignupAPI
 
 
 urlpatterns = [
