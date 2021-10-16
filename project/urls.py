@@ -23,13 +23,15 @@ from rest_framework_simplejwt.views import (
 
 from app.views import (
     MyProfileAPI,
-    ProfileAPI
+    ProfileAPI,
+    SignupAPI
 )
 
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/sign-up/', SignupAPI.as_view()),
     path('api/my-profile/', MyProfileAPI.as_view()),
     path('api/profile/<int:id>/', ProfileAPI.as_view()),
     path('api/login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
