@@ -54,6 +54,7 @@ class SignupAPI(APIView):
 
             response['success'] = True
             response['data'] = data
+            response['message'] = 'User created successfully'
         else:
             response['errors'] = form.errors
 
