@@ -36,7 +36,7 @@ class Post(BaseModel):
 
 
 class Attachment(BaseModel):
-    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, related_name='attachments', on_delete=models.CASCADE)
     file = models.FileField(upload_to='files')
     is_image = models.BooleanField()
 
