@@ -16,6 +16,14 @@ class ProfileInline(admin.StackedInline):
     can_delete = False
     verbose_name_plural = 'Profile'
     fk_name = 'user'
+    extras = 1
+
+class AttachmentInline(admin.StackedInline):
+    model = Attachment
+    verbose_name_plural = 'Attachments'
+    fk_name = 'post'
+
+
 
 class CustomUserAdmin(UserAdmin):
     inlines = (ProfileInline,)
@@ -37,21 +45,7 @@ class PostAdmin(admin.ModelAdmin):
     )
     list_filter = ('created_at', 'modified_at', 'user')
     date_hierarchy = 'created_at'
-
-
-@admin.register(Attachment)
-class AttachmentAdmin(admin.ModelAdmin):
-    list_display = (
-        'id',
-        'created_at',
-        'modified_at',
-        'status',
-        'post',
-        'file',
-        'is_image',
-    )
-    list_filter = ('created_at', 'modified_at', 'post', 'is_image')
-    date_hierarchy = 'created_at'
+    inlines = (AttachmentInline,)
 
 
 @admin.register(Comment)

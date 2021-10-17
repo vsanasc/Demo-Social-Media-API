@@ -12,3 +12,6 @@ __pycache__/
 
 # Vim
 *.swp
+
+# Media files
+/media/
