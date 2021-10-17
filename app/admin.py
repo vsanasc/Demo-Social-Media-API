@@ -2,12 +2,13 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
 
+from friendship.models import Friend, Follow, Block
+
 from .models import (
     Profile,
     Post,
     Attachment,
-    Comment,
-    Friendship
+    Comment
 )
 
 class ProfileInline(admin.StackedInline):
@@ -58,19 +59,6 @@ class CommentAdmin(admin.ModelAdmin):
     list_display = ('id', 'user', 'post', 'text')
     list_filter = ('user', 'post')
 
-
-@admin.register(Friendship)
-class FriendshipAdmin(admin.ModelAdmin):
-    list_display = (
-        'id',
-        'created_at',
-        'modified_at',
-        'requester',
-        'receiver',
-        'status',
-    )
-    list_filter = ('created_at', 'modified_at', 'requester', 'receiver')
-    date_hierarchy = 'created_at'
 
 admin.site.unregister(User)
 admin.site.register(User, CustomUserAdmin)
