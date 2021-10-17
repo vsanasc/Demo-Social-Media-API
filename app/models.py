@@ -24,7 +24,7 @@ class BaseModel(models.Model):
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     birthdate = models.DateField(null=True, blank=True)
-    bio = models.TextField()
+    bio = models.TextField(blank=True)
 
     def __str__(self):
         return self.user.username
@@ -45,20 +45,6 @@ class Comment(BaseModel):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     text = models.TextField()
 
-
-class Friendship(BaseModel):
-    PENDING = 1
-    ACCEPTED = 2
-    REJECTED = 3
-
-    STATE_CHOICES = (
-        (PENDING, 'Pending'),
-        (ACCEPTED, 'Accepted'),
-        (REJECTED, 'Rejected'),
-    )
-    requester = models.ForeignKey(User, on_delete=models.CASCADE, related_name='friendship_requests')
-    receiver = models.ForeignKey(User, on_delete=models.CASCADE, related_name='friendship_received')
-    state = models.PositiveSmallIntegerField(choices=STATE_CHOICES, default=PENDING)
 
 @receiver(post_save, sender=User)
 def create_or_update_user_profile(sender, instance, created, **kwargs):

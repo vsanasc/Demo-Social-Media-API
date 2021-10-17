@@ -10,6 +10,9 @@ djangorestframework==3.12.4
 djangorestframework-simplejwt==4.8.0
 PyJWT==2.1.0
 
+# Frienship
+django-friendship==1.9.4
+
 # Assets
 whitenoise==5.3.0
 
