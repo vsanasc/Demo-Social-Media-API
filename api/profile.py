@@ -15,9 +15,12 @@ class MyProfileAPI(APIView):
     def get(self, request, format=None):
         userData = UserSerializer(request.user).data
         profileData = ProfileSerializer(request.user.profile).data
-        return Response(
-            {**userData, **profileData}
-        )
+        response = {**userData, **profileData}
+        response['photos'] = '0'
+        response['likes'] = '0'
+        response['followers'] = '0'
+        response['following'] = '0'
+        return Response(response)
 
 
 class ProfileAPI(APIView):
